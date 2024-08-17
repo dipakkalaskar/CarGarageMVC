@@ -14,13 +14,19 @@ import org.springframework.http.HttpRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
 @RequestMapping("/")
 public String homePage() {
+	return "indexcust";
+}
+@RequestMapping("/login")
+public String LoginPage() {
 	return "index";
 }
+
 @Autowired
 ValidateUserService validService;
 @RequestMapping("wel")
@@ -28,6 +34,9 @@ public String getWelcome(LoginModel model) {
 	validService.isValidateUser(model);
 	if(model.getLoginType().equals("super admin")) {
 		return "superadmindashjsp";
+	}
+	else if(model.getLoginType().equals("customer")) {
+		return "indexcust";
 	}
 	else {
 		return "index";
@@ -52,10 +61,17 @@ public String saveCust(CustomerModel model,Map msg) throws SQLException {
 @RequestMapping("/viewCustomer")
 public String getAllDepartment(Map map) {
 	List<CustomerModel> list=this.custService.GetAllCustomers();
-//	System.out.println(list);
-	System.out.println(list);
 	map.put("custList", list);
 	return "superadmindashjsp";
+//	return "viewCust";
 	
+}
+@RequestMapping("deleteCustById")
+public String deleteEmployeeById(@RequestParam("custid") Integer custid, Map map) throws SQLException {
+	System.out.println("Cust id is"+custid);
+	boolean b=custService.isDeleteCustomer(custid);
+	List<CustomerModel> list=this.custService.GetAllCustomers();
+	map.put("custList", list);
+	return "superadmindashjsp";
 }
 }

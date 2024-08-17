@@ -3,7 +3,7 @@ package org.car.dbquery;
 public class DbQueries {
 	public static final String ADD_CUSTOMER = "insert into customer values('0',?,?,?,?,?)";
 	public static final String GET_ALL_CUSTOMERS = "select * from customer";
-	public static final String DELETE_CUSTOMER = "delete from customer where name=?";
+	public static final String DELETE_CUSTOMER = "delete from customer where customerid=?";
 	public static final String UPDATE_CUSTOMER_ID = "update customer set id=? where name=?";
 	public static final String UPDATE_CUSTOMER_NAME = "update customer set name=? where name=?";
 	public static final String ADD_SERVICE = "insert into service values('0',?,?,?)";

@@ -92,6 +92,7 @@
     <div class="col-md-9 d-flex align-items-start full-height">
       <div class="tab-content w-100" id="v-pills-tabContent">
         <div class="tab-pane fade show active p-4" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
+    
           <ul class="nav nav-pills mb-3 " id="pills-tab" role="tablist">
             <li class="nav-item mx-3" role="presentation">
               <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">New Customer</button>
@@ -106,6 +107,7 @@
               <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false" disabled>Disabled</button>
             </li>
           </ul>
+        
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
               <form name="frm" action="save" method="post">
@@ -165,7 +167,7 @@
                     <td>${d.getEmail()}</td>
                     <td>${d.getTotalVisits()}</td>
                     <td><a href="#">Update</a></td>
-                    <td><a href="#">Delete</a></td>
+                    <td><a href="deleteCustById?custid=${d.getCustomerID()}">Delete</a></td>
                 </tr>
             </c:forEach>
         </tbody>
@@ -176,6 +178,27 @@
           </div>
         </div>
         <div class="tab-pane fade p-4" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+        
+       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false" disabled>Disabled</button>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">.w..</div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">..d.</div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">..a.</div>
+  <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">...</div>
+</div>
           <h1>Hello, Profile!</h1>
         </div>
         <div class="tab-pane fade p-4" id="v-pills-disabled" role="tabpanel" aria-labelledby="v-pills-disabled-tab" tabindex="0">

@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@page import="org.springframework.beans.factory.annotation.Autowired"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 
 <!DOCTYPE html>
 <html>
@@ -10,8 +9,11 @@
     <title>Customer List</title>
 </head>
 <body>
-<!--     <jsp:include page="superadmindashjsp.jsp"></jsp:include>  -->
-    <table class="table">
+<%@ include file="superadmindashjsp.jsp" %>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+           <a class="link-primary" href="viewCustomer">Refresh</a>
+           <input type="text" class="form-control" placeholder="Search....">
+             <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -35,10 +37,11 @@
                     <td>${d.getEmail()}</td>
                     <td>${d.getTotalVisits()}</td>
                     <td><a href="#">Update</a></td>
-                    <td><a href="#">Delete</a></td>
+                    <td><a href="deleteCustById?custid=${d.getCustomerID()}">Delete</a></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
+            </div>
 </body>
 </html>

@@ -24,10 +24,10 @@ public class CustomerService {
 		return customerRepository.getAllCustomers();
 		
 	}
-//	public boolean isDeleteCustomer(String name) throws SQLException {
-//		return customerRepository.isDeleteCustomer(name);
-//		
-//	}
+	public boolean isDeleteCustomer(int id) throws SQLException {
+		return customerRepository.isDeleteCustomer(id);
+		
+	}
 //	public boolean isCustomerUpdate(int id,String name) throws SQLException {
 //		return customerRepository.iscustomerUpdate(id,name);
 //		

@@ -85,16 +85,26 @@ public class CustomerRepository {
 	}
 
 	
-//	public boolean isDeleteCustomer(String name) throws SQLException {
+	public boolean isDeleteCustomer(int id) throws SQLException {
 //		stmt=conn.prepareStatement(DbQueries.DELETE_CUSTOMER);
 //		stmt.setString(1, name);
 //		int val=stmt.executeUpdate();
-//		
-//		
-//		
-//		return val>0?true:false;
-//		
-//	}
+		int val=template.update(DbQueries.DELETE_CUSTOMER,new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setInt(1,id);
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		
+		
+		return val>0?true:false;
+		
+	}
 //	public boolean iscustomerUpdate(int id,String name) throws SQLException {
 //		stmt=conn.prepareStatement(DbQueries.UPDATE_CUSTOMER_ID);
 //		stmt.setInt(1, id);
