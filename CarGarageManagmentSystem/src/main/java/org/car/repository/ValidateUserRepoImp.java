@@ -24,6 +24,7 @@ JdbcTemplate template;
 					// TODO Auto-generated method stub
 					
 					model.setLoginType(rs.getString("logintype"));
+					model.setUser_id(rs.getInt("user_id"));
 					return model;
 				}
 			};

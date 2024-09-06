@@ -1,7 +1,8 @@
 package org.car.dbquery;
 
 public class DbQueries {
-	public static final String ADD_CUSTOMER = "insert into customer values('0',?,?,?,?,?)";
+	public static final String ADD_CUSTOMER = "insert into customer values('0',?,?,?,?,?,?,?)";
+	public static final String GET_ALL_SUBSERVICES =" select * from subservice";
 	public static final String GET_ALL_CUSTOMERS = "select * from customer";
 	public static final String DELETE_CUSTOMER = "delete from customer where customerid=?";
 	public static final String UPDATE_CUSTOMER_ID = "update customer set id=? where name=?";
@@ -18,4 +19,8 @@ public class DbQueries {
 	public static final String ADD_BILL = "insert into bill values('0',?,?,?,?,?)";
 	public static final String VIEW_BILL_STRING ="select * from bill where billid=?";
 	public static final String LOGIN_ADMIN = " select * from login where username=? and password=?";
+	public static final String ADD_VEHICLE = "insert into vehicle values('0',?,?,?,?,?)";
+	public static final String GET_VEHICLE_CUST ="select * from vehicle where customerid=?";
+	public static final String ADD_SERVICING = "insert into servicing values('0',?,?,?,?,?,?)";
+	public static final String GET_ALL_ACCESSORIES = "select * from accessories";
 }

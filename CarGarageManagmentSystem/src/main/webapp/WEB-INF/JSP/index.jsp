@@ -32,7 +32,7 @@
                   <div class="text-center">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
                          style="width: 185px;" alt="logo">
-                    <h4 class="mt-1 mb-5 pb-1">Hello Admin Please Login!</h4>
+                    <h4 class="mt-1 mb-5 pb-1">Hello Please Login!</h4>
                   </div>
                   <form name="frm" action="wel" method="get">
                     <p>Please login to your account</p>
@@ -48,6 +48,9 @@
                     <div class="text-center pt-1 mb-5 pb-1">
                       <button class="btn btn-primary btn-block fa-lg login-button mb-3" type="submit">Log in</button>
                       <a class="text-muted" href="#!">Forgot password?</a>
+                    </div>
+                    <div class="text-center">
+                      <p>Not an account? <a href="regCust" class="text-primary">Register here</a></p>
                     </div>
                   </form>
                 </div>
@@ -70,4 +73,3 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

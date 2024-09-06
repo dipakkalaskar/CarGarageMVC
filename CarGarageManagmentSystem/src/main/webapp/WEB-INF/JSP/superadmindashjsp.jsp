@@ -135,6 +135,14 @@
                   <label for="totalVisits">Number Of Visits</label>
                   <input type="number" name="totalVisits" value="${totalVisits}" class="form-control" placeholder="Number Of Visits">
                 </div>
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" name="username" value="${username}" class="form-control" placeholder="username">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label> 
+                  <input type="password" name="password" value="${password}" class="form-control" placeholder="password">
+                </div>
 
                 <input type="submit" name="s" value="Add New Customer" class="form-control">
               </form>

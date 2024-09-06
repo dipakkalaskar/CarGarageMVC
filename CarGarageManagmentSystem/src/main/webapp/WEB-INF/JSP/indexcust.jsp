@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,29 +16,8 @@
     <meta name="theme-color" content="#478ac9">
 </head>
 <body>
-    <!-- Header -->
-    <header class="bg-primary text-white py-3">
-        <div class="container d-flex justify-content-between align-items-center">
-            <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-brand text-white">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/027/385/442/small/car-stainless-logo-png.png" alt="Car Repair Logo" width="80">
-                Digital Garage
-            </a>
-            <nav class="navbar navbar-expand-lg navbar-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link text-white" href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="${pageContext.request.contextPath}/Team.jsp">Team</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="${pageContext.request.contextPath}/Landing.jsp">Landing</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="${pageContext.request.contextPath}/About.jsp">About</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="${pageContext.request.contextPath}/login">Login</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
+<jsp:include page="indexhead.jsp"></jsp:include>
+    
 
     <!-- Main Content -->
     <div class="container mt-5">
@@ -67,7 +47,7 @@
           <p class="text-lg-start text-center mb-4">
             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
           </p>
-          <a href="#" class="btn btn-primary rounded-pill d-lg-inline-block d-block mx-lg-0 mx-auto">
+          <a href="bookService" class="btn btn-primary rounded-pill d-lg-inline-block d-block mx-lg-0 mx-auto">
             Need a car inspection?
           </a>
         </div>
@@ -98,7 +78,9 @@
                     <div class="card-body text-left">
                         <h3 class="card-title">Auto Repair</h3>
                         <p class="card-text">Sample text. Click to select the Text Element.</p>
-                        <img src="images/1743705-6a3eb0b6.png" alt="Auto Repair" class="img-fluid" width="50">
+                        <img src="https://drive.google.com/file/d/1L88DX2HOtriZC1raPP_TIunE6YTSEAcV/view?usp=sharing" alt="Auto Glass Repair" class="img-fluid" width="50">
+                                <img src="https://drive.google.com/file/d/1L88DX2HOtriZC1raPP_TIunE6YTSEAcV/view?usp=sharing" class="img-fluid rounded shadow" alt="Car Repair">
+						
                     </div>
                 </div>
             </div>
@@ -109,7 +91,8 @@
                     <div class="card-body text-left">
                         <h3 class="card-title">Auto Glass Repair</h3>
                         <p class="card-text">Sample text. Click to select the Text Element.</p>
-                        <img src="images/16096073-d0fe1288.png" alt="Auto Glass Repair" class="img-fluid" width="50">
+                        <img src="<c:url value='/resources/images/1.jpg' />" alt="Auto Glass Repair" class="img-fluid" width="50">
+
                     </div>
                 </div>
             </div>
