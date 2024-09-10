@@ -5,8 +5,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<jsp:include page="adminhead.jsp"></jsp:include>
 <div class="container">
-  <jsp:include page="adminhead.jsp"></jsp:include>
+  
     <h2>Monthly Vehicle Report</h2>
     <table class="table table-striped">
         <thead>

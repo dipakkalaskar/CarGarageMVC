@@ -1,6 +1,7 @@
 package org.car.service;
 
 
+import org.car.model.CustomerVehicleReportModel;
 import org.car.model.MonthlyIncomeModel;
 import org.car.model.VehicleReportModel;
 import org.car.repository.ReportsRepository;
@@ -20,5 +21,8 @@ public class VehicleReportService {
     }
     public MonthlyIncomeModel getMonthlyIncome(int month, int year) {
     	return repo.getMonthlyIncome(month, year);
+    }
+    public List<CustomerVehicleReportModel> getCustomerVehicleReport(int customerId) {
+        return repo.fetchReportByCustomerId(customerId);
     }
 }

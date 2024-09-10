@@ -54,7 +54,7 @@
 <body>
  <header class="bg-primary text-white py-3">
         <div class="container d-flex justify-content-between align-items-center">
-            <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-brand text-white">
+            <a href="${pageContext.request.contextPath}/" class="navbar-brand text-white">
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/027/385/442/small/car-stainless-logo-png.png" alt="Car Repair Logo" width="80">
                 Digital Garage
             </a>

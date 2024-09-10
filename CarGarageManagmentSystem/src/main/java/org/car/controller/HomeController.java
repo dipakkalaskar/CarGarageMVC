@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.car.model.AccessoriesModel;
 import org.car.model.BillModel;
 import org.car.model.CustomerModel;
+import org.car.model.CustomerVehicleReportModel;
 import org.car.model.GenBillModel;
 import org.car.model.LoginModel;
 import org.car.model.MonthlyIncomeModel;
@@ -159,12 +160,12 @@ public class HomeController {
 	@RequestMapping("savee")
 	public String saveCustomer(CustomerModel model, Map msg) throws SQLException {
 		System.out.println(model);
-
+		model.setTotalVisits(0);
 		boolean b = custService.isAddCustomer(model);
 		if (b) {
 			msg.put("msg", "Register Succefull....");
 		} else {
-			msg.put("msg", "CRegistration Failed...");
+			msg.put("msg", "Registration Failed...");
 		}
 		return "regcust";
 		// return "superadmindashjsp";
@@ -178,7 +179,7 @@ public class HomeController {
 	@RequestMapping("save")
 	public String saveCust(CustomerModel model, Map msg) throws SQLException {
 		System.out.println(model);
-
+		model.setTotalVisits(0);
 		boolean b = custService.isAddCustomer(model);
 		if (b) {
 			msg.put("msg", "Customer Added....");
@@ -359,5 +360,15 @@ public class HomeController {
 	        model.addAttribute("month", month);
 	        model.addAttribute("year", year);
 	        return "monthlyIncome";
+	    }
+	 @RequestMapping("getCustId")
+	 public String getCustId() {
+		 return "getCustId";
+	 }
+	 @RequestMapping("customerVehicleReport")
+	 public String getCustomerVehicleReport(@RequestParam("customerId") int customerId, Model model) {
+	        List<CustomerVehicleReportModel> reportList = vehicleReportService.getCustomerVehicleReport(customerId);
+	        model.addAttribute("reportList", reportList);
+	        return "customerVehicleReport";
 	    }
 }

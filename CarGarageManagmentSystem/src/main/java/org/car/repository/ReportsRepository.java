@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.car.model.CustomerVehicleReportModel;
 import org.car.model.MonthlyIncomeModel;
 import org.car.model.VehicleReportModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,45 @@ public class ReportsRepository {
 
         return new MonthlyIncomeModel(totalIncome != null ? totalIncome : 0.0);
     }
+	public List<CustomerVehicleReportModel> fetchReportByCustomerId(int customerId) {
+        String sql = "SELECT c.name AS customerName, c.phone AS customerPhone, c.email AS customerEmail, " +
+                "v.vehiclenumber AS vehicleNumber, v.model AS vehicleModel, v.make AS vehicleMake, " +
+                "se.servicename AS serviceName, se.servicedescription AS serviceDescription, " +
+                "se.baseprice AS serviceBasePrice, ss.subservicename AS subServiceName, " +
+                "ss.subservicedescription AS subServiceDescription, ss.subserviceprice AS subServicePrice, " +
+                "b.totalamount, b.discountapplied, b.finalamount " +
+                "FROM customer c " +
+                "INNER JOIN vehicle v ON c.customerid = v.customerid " +
+                "INNER JOIN servicing s ON v.vehicleid = s.vehicleid " +
+                "INNER JOIN bill b ON s.servicingid = b.servicingid " +
+                "INNER JOIN service se ON s.serviceid = se.serviceid " +
+                "INNER JOIN subservice ss ON s.subserviceid = ss.subserviceid " +
+                "WHERE c.customerid = ? " +
+                "ORDER BY s.servicedate ASC";
+
+        return template.query(sql, new Object[]{customerId}, new RowMapper<CustomerVehicleReportModel>() {
+            @Override
+            public CustomerVehicleReportModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+                CustomerVehicleReportModel report = new CustomerVehicleReportModel();
+                report.setCustomerName(rs.getString("customerName"));
+                report.setCustomerPhone(rs.getString("customerPhone"));
+                report.setCustomerEmail(rs.getString("customerEmail"));
+                report.setVehicleNumber(rs.getString("vehicleNumber"));
+                report.setVehicleModel(rs.getString("vehicleModel"));
+                report.setVehicleMake(rs.getString("vehicleMake"));
+                report.setServiceName(rs.getString("serviceName"));
+                report.setServiceDescription(rs.getString("serviceDescription"));
+                report.setServiceBasePrice(rs.getDouble("serviceBasePrice"));
+                report.setSubServiceName(rs.getString("subServiceName"));
+                report.setSubServiceDescription(rs.getString("subServiceDescription"));
+                report.setSubServicePrice(rs.getDouble("subServicePrice"));
+                report.setTotalAmount(rs.getDouble("totalamount"));
+                report.setDiscountApplied(rs.getDouble("discountapplied"));
+                report.setFinalAmount(rs.getDouble("finalamount"));
+                return report;
+            }
+        });
+    }
+
 
 }

@@ -27,6 +27,7 @@ public class ServicingRepo {
         
         template.update(DbQueries.ADD_SERVICING,servicingModel.getVehicleID(), servicingModel.getServiceDate(),
                 servicingModel.getServiceID(), servicingModel.getTotalPrice(),servicingModel.getSubServiceID(),servicingModel.getAccessoryID());
+        
     }
 	
 	

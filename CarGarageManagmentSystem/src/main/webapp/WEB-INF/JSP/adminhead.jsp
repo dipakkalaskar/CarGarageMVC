@@ -101,7 +101,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="reportsDropdown">
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/vehiclemonth">View Monthly Vehicle Reports</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/#">View Customer Wise Vehicle Report</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/getCustId">View Customer Wise Vehicle Report</a>
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/incomemonth">View Monthly Income</a>
                             </div>
                         </li>

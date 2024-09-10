@@ -23,6 +23,7 @@
 	<bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
 	   <property name="dataSource" ref="dataSource"/>
 	</bean>
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	<!-- ================================== -->
 	<!-- 2. view resolver for JSP -->

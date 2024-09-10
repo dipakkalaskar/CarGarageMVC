@@ -53,7 +53,7 @@
         }
     </style>
 </head>
-<body>
+<body> 
     <jsp:include page="adminhead.jsp"></jsp:include>
     
     <div class="container-fluid">
@@ -79,10 +79,7 @@
                 <input type="email" name="email" value="${email}" class="form-control" placeholder="Email" required>
             </div>
 
-            <div class="form-group">
-                <label for="totalVisits">Number Of Visits</label>
-                <input type="number" name="totalVisits" value="${totalVisits}" class="form-control" placeholder="Number Of Visits" required>
-            </div>
+           
 
             <div class="form-group">
                 <label for="username">Username</label>
