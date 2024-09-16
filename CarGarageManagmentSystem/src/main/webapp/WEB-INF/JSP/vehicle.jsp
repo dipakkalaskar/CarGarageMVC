@@ -43,25 +43,34 @@
 
     <div class="container mt-5">
         <h2 class="text-center mb-4">Enter Vehicle Details</h2>
-        <form action="saveVehicleDetails" method="post">
-            <div class="form-group">
-                <label for="vehicleNumber">Vehicle Number</label>
-                <input type="text" class="form-control" id="vehicleNumber" name="vehicleNumber" placeholder="Enter Vehicle Number" required>
-            </div>
-            <div class="form-group">
-                <label for="model">Model</label>
-                <input type="text" class="form-control" id="model" name="model" placeholder="Enter Model" required>
-            </div>
-            <div class="form-group">
-                <label for="make">Make</label>
-                <input type="text" class="form-control" id="make" name="make" placeholder="Enter Make" required>
-            </div>
-            <div class="form-group">
-                <label for="year">Year</label>
-                <input type="number" class="form-control" id="year" name="year" placeholder="Enter Year" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Save Vehicle Details</button>
-        </form>
+       <form action="saveVehicleDetails" method="post">
+   <div class="form-group">
+    <label for="vehicleNumber">Vehicle Number</label>
+    <input type="text" class="form-control" id="vehicleNumber" name="vehicleNumber" placeholder="Enter Vehicle Number" 
+           required pattern="[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}" 
+           title="Please enter a valid Indian vehicle number (e.g., MH12AB1234)">
+    <div class="invalid-feedback">
+        Please enter a valid Indian vehicle number (e.g., MH12AB1234).
+    </div>
+</div>
+
+    <div class="form-group">
+        <label for="model">Model</label>
+        <input type="text" class="form-control" id="model" name="model" placeholder="Enter Model" required pattern="[A-Za-z0-9\s]{1,20}">
+        <div class="invalid-feedback">Please enter a valid model (alphanumeric, spaces, max 20 characters).</div>
+    </div>
+    <div class="form-group">
+        <label for="make">Make</label>
+        <input type="text" class="form-control" id="make" name="make" placeholder="Enter Make" required pattern="[A-Za-z0-9\s]{1,20}">
+        <div class="invalid-feedback">Please enter a valid make (alphanumeric, spaces, max 20 characters).</div>
+    </div>
+    <div class="form-group">
+        <label for="year">Year</label>
+        <input type="number" class="form-control" id="year" name="year" placeholder="Enter Year" required min="1900" max="2100">
+        <div class="invalid-feedback">Please enter a valid year (between 1900 and 2100).</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Vehicle Details</button>
+</form>
         ${msg}
     </div>
 

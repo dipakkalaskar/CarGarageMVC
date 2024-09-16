@@ -38,7 +38,7 @@
     <meta name="theme-color" content="#478ac9">
 </head>
 <body>
-<jsp:include page="beforelogin.jsp"></jsp:include>
+<jsp:include page="indexhead.jsp"></jsp:include>
 
 <!-- Main Content -->
 <div class="container mt-5">
@@ -162,8 +162,6 @@
                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
-    
-
 <article class="contact container my-5" data-page="contact">
 
  
@@ -201,6 +199,7 @@
   </section>
 
 </article>
+
 
 <!-- Footer -->
 <footer class="bg-dark text-white text-center py-3 mt-auto">

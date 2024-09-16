@@ -41,6 +41,11 @@ public class HomeController {
 	public String homePage() {
 		return "indexcust";
 	}
+	@RequestMapping("/afterLogin")
+	public String afterLoginIndex() {
+		return "afterindexcust";
+		
+	}
 
 	@RequestMapping("/login")
 	public String LoginPage() {
@@ -69,7 +74,7 @@ public class HomeController {
 			List lst = custService.getAllServicingDetails(user_id);
 			System.out.println(lst);
 //			session.setAttribute("vehicle_id", vservice.getVehicleId());
-			return "indexcust";
+			return "afterindexcust";
 		} else {
 			return "index";
 		}
@@ -95,7 +100,71 @@ public class HomeController {
 		map.put("sdetails", lst);
 		return "vsdetails";
 	}
-
+	@RequestMapping("/getNotification")
+	public String getNotifications(Map map, HttpSession session) {
+		String stat="pending";
+		List lst = custService.getAllServicingDetailss(stat);
+		System.out.println(lst);
+		map.put("sdetails", lst);
+		return "notification";
+	}
+	@RequestMapping("updateservicing")
+	public String updateServiceStatus(@RequestParam("cid") int id,Map map) {
+		int val=servicingService.isUpdateServicingStatus(id);
+		if(val>0) {
+			map.put("msg","Servicing Done and Bill Generated");
+			
+		}
+		else{
+			map.put("msg", "Servicing Canceled");
+			
+		}
+		return "notification";
+		
+	}
+	@RequestMapping("getServicingStatus")
+	public String getServicingDetails(HttpSession session,Map map) {
+		int vid=(int) session.getAttribute("vehicle_id");
+		System.out.println(vid);
+		String status= servicingService.getServicingStatus(vid);
+		System.out.println(status);
+		if(status.equals("done")) {
+			map.put("msg", "Your Servicing is Done !! and Bill is Generated you can View your Bill!!");
+			
+			List<ServicingToBillModel> list=servicingService.getServicingToBillModel(vid);
+			System.out.println(list);
+			double discount;
+			double finalAmount;
+			int totalVisits;
+			GenBillModel bill =new GenBillModel();
+			 for (ServicingToBillModel model : list) {
+				 	bill.setServicingID(model.getServicingID());
+				 	bill.setBillDate(model.getServiceDate());
+				 	totalVisits=model.getTotalVisits();
+				 	if(totalVisits==1) {
+				 		discount=model.getTotalPrice()*0.1;
+				 	}
+				 	else if(totalVisits >= 5) {
+				 		discount=model.getTotalPrice()*0.15;
+				 	}
+				 	else {
+				 		discount=0.0;
+				 	}
+				 	bill.setTotalAmount(model.getTotalPrice());
+				 	bill.setDiscountApplied(discount);
+				 	finalAmount=model.getTotalPrice()-discount;
+				 	bill.setFinalAmount(finalAmount);
+		        }
+			int val= servicingService.isGenBill(bill);
+		}
+		else if(status.equals("pending")) {
+			map.put("msg", "Your Servicing is in Process we will inform you When its Done!!");
+		}
+		else {
+			map.put("msg","There are some Problem With your Acount Please wait we will Get In Touch with You");
+		}
+		return "servicingStatus";
+	}
 	@RequestMapping("getBill")
 	public String getBill(HttpSession session, Map map) {
 		user_id = (int) session.getAttribute("user_id");
@@ -366,9 +435,14 @@ public class HomeController {
 		 return "getCustId";
 	 }
 	 @RequestMapping("customerVehicleReport")
-	 public String getCustomerVehicleReport(@RequestParam("customerId") int customerId, Model model) {
-	        List<CustomerVehicleReportModel> reportList = vehicleReportService.getCustomerVehicleReport(customerId);
+	 public String getCustomerVehicleReport(@RequestParam("customerName") String customerName, Model model) {
+	        List<CustomerVehicleReportModel> reportList = vehicleReportService.getCustomerVehicleReport(customerName);
 	        model.addAttribute("reportList", reportList);
 	        return "customerVehicleReport";
 	    }
+	 @RequestMapping("logout")
+	 public String logout(HttpSession session) {
+		 session.invalidate();
+		 return "indexcust";
+	 }
 }

@@ -3,6 +3,7 @@ package org.car.model;
 public class VehicleModel {
 	private int vehicleID;
     private int customerID;
+    
     private String vehicleNumber;
     private String model;
     private String make;

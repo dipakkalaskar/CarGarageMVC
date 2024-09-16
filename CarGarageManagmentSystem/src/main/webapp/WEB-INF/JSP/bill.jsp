@@ -87,5 +87,11 @@
     <p><strong>Discount Applied:</strong> ${billDetails[0].discountApplied}</p>
     <p><strong>Final Amount:</strong> ${billDetails[0].finalAmount}</p>
 </div>
+<div class="d-flex justify-content-center my-5">
+  <a href="https://rzp.io/l/TTagwjzO" class="btn btn-primary btn-lg" role="button">
+    Pay Bill
+  </a>
+</div>
+
 </body>
 </html>

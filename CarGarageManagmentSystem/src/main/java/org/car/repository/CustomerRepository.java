@@ -117,7 +117,26 @@ public List<ServicingDetailsModel> getAllServiceingDetails(int id){
 			return model;
 		}
 	};
-	List<ServicingDetailsModel> list=template.query(" select c.customerid , c.name ,s.servicingid,s.totalprice,v.vehicleid from customer c inner join vehicle v on c.customerid=v.customerid inner join servicing s on v.vehicleid=s.vehicleid where c.customerid=?;",new Object[]{id}, r);
+	List<ServicingDetailsModel> list=template.query(DbQueries.GET_ALL_SERVICEING_DETAILS_OF_CUSTOMER,new Object[]{id}, r);
+	return list.isEmpty() ? null : list;
+
+}
+public List<ServicingDetailsModel> getAllServiceingDetailss(String stat){
+	RowMapper<ServicingDetailsModel> r=new RowMapper<ServicingDetailsModel>() {
+		
+		@Override
+		public ServicingDetailsModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+			ServicingDetailsModel model=new ServicingDetailsModel();
+			model.setCustomerid(rs.getInt(1));
+			model.setName(rs.getString(2));
+			model.setServicingid(rs.getInt(3));
+			model.setTotalprice(rs.getDouble(4));
+			model.setVehicleid(rs.getInt(5));
+			// TODO Auto-generated method stub
+			return model;
+		}
+	};
+	List<ServicingDetailsModel> list=template.query(DbQueries.GET_ALL_SERVICEING_DETAILS_OF_CUSTOMER_NOTIFICATION,new Object[]{stat}, r);
 	return list.isEmpty() ? null : list;
 
 }
@@ -134,7 +153,7 @@ public List<BillModel> getBill(int id) {
 //               + "INNER JOIN servicingdetails sd ON s.servicingid = sd.servicingid "
 //               + "INNER JOIN subservice ss ON ss.subserviceid = sd.subserviceid "
 //               + "WHERE c.customerid = ?"; // Adjust this condition based on your requirements.
-String sql=" select c.name,c.phone,c.email,v.vehiclenumber,v.model,v.make,s.servicedate,se.servicename,se.servicedescription,se.baseprice,ss.subservicename,ss.subservicedescription,ss.subserviceprice,b.billdate,b.totalamount,b.discountapplied,b.finalamount from customer c inner join vehicle v on c.customerid=v.customerid inner join servicing s on v.vehicleid=s.vehicleid inner join bill b on s.servicingid=b.servicingid inner join service se on s.serviceid=se.serviceid inner join subservice ss on ss.subserviceid=s.subserviceid where c.customerid = ? order by s.servicedate desc limit 1 offset 1";
+//String sql=;
     RowMapper<BillModel> r = new RowMapper<BillModel>() {
         @Override
         public BillModel mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -160,7 +179,7 @@ String sql=" select c.name,c.phone,c.email,v.vehiclenumber,v.model,v.make,s.serv
         }
     };
 
-    List<BillModel> list = template.query(sql, new Object[]{id}, r);
+    List<BillModel> list = template.query(DbQueries.GET_BILL, new Object[]{id}, r);
     return list;
 }
 	

@@ -22,7 +22,7 @@ public class VehicleReportService {
     public MonthlyIncomeModel getMonthlyIncome(int month, int year) {
     	return repo.getMonthlyIncome(month, year);
     }
-    public List<CustomerVehicleReportModel> getCustomerVehicleReport(int customerId) {
-        return repo.fetchReportByCustomerId(customerId);
+    public List<CustomerVehicleReportModel> getCustomerVehicleReport(String name) {
+        return repo.fetchReportByCustomerId(name);
     }
 }

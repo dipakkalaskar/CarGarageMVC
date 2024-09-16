@@ -24,4 +24,10 @@ public class ServicingService {
 	public int isGenBill(GenBillModel model) {
 		return repo.generateBill(model);
 	}
+	public int isUpdateServicingStatus(int id) {
+		return repo.updateServicingStatus(id);
+	}
+	public String getServicingStatus(int id) {
+		return repo.getServicingStatus(id);
+	}
 }

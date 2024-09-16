@@ -12,8 +12,8 @@
 	 <jsp:include page="adminhead.jsp"></jsp:include>
  <!-- Input Form for Customer ID -->
         <form action="customerVehicleReport" method="get" class="form-inline justify-content-center mb-4 mt-4">
-            <label for="customerId" class="mr-2">Enter Customer ID:</label>
-            <input type="number" id="customerId" name="customerId" class="form-control mr-2" required>
+            <label for="customerName" class="mr-2">Enter Customer Name:</label>
+            <input type="text" id="customerName" name="customerName" class="form-control mr-2" required>
             <button type="submit" class="btn btn-primary">Get Report</button>
         </form>
         

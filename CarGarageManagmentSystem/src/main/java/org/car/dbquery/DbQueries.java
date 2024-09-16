@@ -21,6 +21,11 @@ public class DbQueries {
 	public static final String LOGIN_ADMIN = " select * from login where username=? and password=?";
 	public static final String ADD_VEHICLE = "insert into vehicle values('0',?,?,?,?,?)";
 	public static final String GET_VEHICLE_CUST ="select * from vehicle where customerid=?";
-	public static final String ADD_SERVICING = "insert into servicing values('0',?,?,?,?,?,?)";
+	public static final String ADD_SERVICING = "insert into servicing values('0',?,?,?,?,?,?,'pending')";
 	public static final String GET_ALL_ACCESSORIES = "select * from accessories";
+	public static final String GET_ALL_SERVICEING_DETAILS_OF_CUSTOMER = " select c.customerid , c.name ,s.servicingid,s.totalprice,v.vehicleid from customer c inner join vehicle v on c.customerid=v.customerid inner join servicing s on v.vehicleid=s.vehicleid where c.customerid=?;";
+	public static final String GET_ALL_SERVICEING_DETAILS_OF_CUSTOMER_NOTIFICATION = " select c.customerid , c.name ,s.servicingid,s.totalprice,v.vehicleid from customer c inner join vehicle v on c.customerid=v.customerid inner join servicing s on v.vehicleid=s.vehicleid where s.status=?;";
+	public static final String GET_BILL =" select c.name,c.phone,c.email,v.vehiclenumber,v.model,v.make,s.servicedate,se.servicename,se.servicedescription,se.baseprice,ss.subservicename,ss.subservicedescription,ss.subserviceprice,b.billdate,b.totalamount,b.discountapplied,b.finalamount from customer c inner join vehicle v on c.customerid=v.customerid inner join servicing s on v.vehicleid=s.vehicleid inner join bill b on s.servicingid=b.servicingid inner join service se on s.serviceid=se.serviceid inner join subservice ss on ss.subserviceid=s.subserviceid where c.customerid = ? order by s.servicedate desc limit 1 offset 1";
+	
+	
 }

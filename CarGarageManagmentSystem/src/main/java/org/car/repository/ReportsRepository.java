@@ -54,7 +54,7 @@ public class ReportsRepository {
 
         return new MonthlyIncomeModel(totalIncome != null ? totalIncome : 0.0);
     }
-	public List<CustomerVehicleReportModel> fetchReportByCustomerId(int customerId) {
+	public List<CustomerVehicleReportModel> fetchReportByCustomerId(String customerName) {
         String sql = "SELECT c.name AS customerName, c.phone AS customerPhone, c.email AS customerEmail, " +
                 "v.vehiclenumber AS vehicleNumber, v.model AS vehicleModel, v.make AS vehicleMake, " +
                 "se.servicename AS serviceName, se.servicedescription AS serviceDescription, " +
@@ -67,10 +67,10 @@ public class ReportsRepository {
                 "INNER JOIN bill b ON s.servicingid = b.servicingid " +
                 "INNER JOIN service se ON s.serviceid = se.serviceid " +
                 "INNER JOIN subservice ss ON s.subserviceid = ss.subserviceid " +
-                "WHERE c.customerid = ? " +
+                "WHERE c.name = ? " +
                 "ORDER BY s.servicedate ASC";
 
-        return template.query(sql, new Object[]{customerId}, new RowMapper<CustomerVehicleReportModel>() {
+        return template.query(sql, new Object[]{customerName}, new RowMapper<CustomerVehicleReportModel>() {
             @Override
             public CustomerVehicleReportModel mapRow(ResultSet rs, int rowNum) throws SQLException {
                 CustomerVehicleReportModel report = new CustomerVehicleReportModel();

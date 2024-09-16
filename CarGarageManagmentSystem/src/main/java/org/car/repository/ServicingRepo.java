@@ -66,5 +66,22 @@ public class ServicingRepo {
 			
 		});
 	}
+	public int updateServicingStatus(int id) {
+		return template.update("update servicing set status='done' where ServicingID=?",new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				// TODO Auto-generated method stub
+				ps.setInt(1, id);
+				
+			}
+			
+		});
+	}
+	public String getServicingStatus(int id) {
+	    String sql = "SELECT status FROM servicing WHERE vehicleid = ?  order by servicedate limit 1";
+	    return template.queryForObject(sql, new Object[]{id}, String.class);
+	}
+
 
 }

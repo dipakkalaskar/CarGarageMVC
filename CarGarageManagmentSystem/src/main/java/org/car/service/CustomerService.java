@@ -38,6 +38,10 @@ public class CustomerService {
 		return customerRepository.getAllServiceingDetails(id);
 		
 	}
+	public List<ServicingDetailsModel> getAllServicingDetailss(String stat) {
+		return customerRepository.getAllServiceingDetailss(stat);
+		
+	}
 	public List<BillModel> getBill(int id){
 		return customerRepository.getBill(id);
 	}
