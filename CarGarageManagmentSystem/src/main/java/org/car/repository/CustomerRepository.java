@@ -182,6 +182,12 @@ public List<BillModel> getBill(int id) {
     List<BillModel> list = template.query(DbQueries.GET_BILL, new Object[]{id}, r);
     return list;
 }
+public boolean isUsernameExists(String username) {
+    String sql = "SELECT COUNT(*) FROM login WHERE username = ?";
+    int count = template.queryForObject(sql, new Object[]{username}, Integer.class);
+    return count > 0;
+}
+
 	
 	public boolean isDeleteCustomer(int id) throws SQLException {
 //		stmt=conn.prepareStatement(DbQueries.DELETE_CUSTOMER);

@@ -69,9 +69,7 @@
                         <li class="nav-item"><a class="nav-link text-white" href="${pageContext.request.contextPath}/Landing.jsp">Landing</a></li>
                         <li class="nav-item"><a class="nav-link text-white" href="${pageContext.request.contextPath}/About.jsp">About</a></li>
                         <li class="nav-item"><a class="nav-link text-white" href="${pageContext.request.contextPath}/login">Login</a></li>
-                        <li class="nav-link text-white ml-5">
-    						<a href="custProf" class="text-white"> Welcome ${ cust_name }</a>
-						</li>
+                      
 
                     </ul>
                 </div>

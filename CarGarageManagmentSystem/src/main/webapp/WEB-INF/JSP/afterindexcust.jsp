@@ -98,7 +98,7 @@
             <!-- Service Item 2 -->
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm">
-                    <img src="${pageContext.request.contextPath}/resources/images/16096073.png" alt="Auto Glass Repair" class="card-img-top img-fluid mx-auto" style="width: 150px; height: auto;">
+                    <img src="${pageContext.request.contextPath}/resources/images/16096073-d0fe1288.png" alt="Auto Glass Repair" class="card-img-top img-fluid mx-auto" style="width: 150px; height: auto;">
                     <div class="card-body">
                         <h3 class="card-title">Auto Glass Repair</h3>
                         <p class="card-text">Fast and reliable auto glass repair services.</p>
@@ -109,7 +109,7 @@
             <!-- Service Item 3 -->
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm">
-                    <img src="${pageContext.request.contextPath}/resources/images/16096073.png" alt="Auto Glass Repair" class="card-img-top img-fluid mx-auto" style="width: 150px; height: auto;">
+                    <img src="${pageContext.request.contextPath}/resources/images/16096073-d0fe1288.png" alt="Auto Glass Repair" class="card-img-top img-fluid mx-auto" style="width: 150px; height: auto;">
                     <div class="card-body">
                         <h3 class="card-title">Auto Glass Repair</h3>
                         <p class="card-text">Reliable and high-quality auto glass repair services.</p>

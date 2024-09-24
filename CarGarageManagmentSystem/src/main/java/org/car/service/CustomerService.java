@@ -34,6 +34,10 @@ public class CustomerService {
 	public String getCustomerName(int id) {
 		return customerRepository.getCustName(id);
 	}
+	public boolean isUsernameExists(String username) {
+	    return customerRepository.isUsernameExists(username);  // Implement this method to query the database
+	}
+
 	public List<ServicingDetailsModel> getAllServicingDetails(int id) {
 		return customerRepository.getAllServiceingDetails(id);
 		
