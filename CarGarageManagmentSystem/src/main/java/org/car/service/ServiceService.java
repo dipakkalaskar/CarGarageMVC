@@ -25,4 +25,7 @@ public class ServiceService {
 	public List<AccessoriesModel> getAllAccessories(){
 		return repo.getAllAccessories();
 	}
+	public void saveSubService(SubServiceModel subServiceModel) {
+        repo.saveSubService(subServiceModel);
+    }
 }

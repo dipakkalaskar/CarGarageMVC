@@ -87,4 +87,9 @@ public class ServiceRepo {
 		
 		return list;
 	}
+	public void saveSubService(SubServiceModel subServiceModel) {
+	    String sql = "INSERT INTO subservice (ServiceID, SubServiceName, SubServiceDescription, SubServicePrice) VALUES ('0', ?, ?, ?)";
+	    template.update(sql, subServiceModel.getSubServiceName(), subServiceModel.getSubServiceDescription(), subServiceModel.getSubServicePrice());
+	}
+
 }

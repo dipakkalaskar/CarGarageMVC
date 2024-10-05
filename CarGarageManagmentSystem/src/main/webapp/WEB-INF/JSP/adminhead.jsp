@@ -90,6 +90,7 @@
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/viewService">View Services</a>
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/addService">Add Services</a>
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/showSubServices">Sub Services</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/addSubService">Add Sub Services</a>
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/showacc">Accessories</a>
                             </div>
                         </li>
@@ -111,6 +112,9 @@
                         <li class="nav-item"><a class="nav-link text-white" href="${pageContext.request.contextPath}/getNotification"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
   <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
 </svg></a></li>
+	 <li class="nav-item">
+                            <a href="${pageContext.request.contextPath}/logout" class="nav-link text-white">Logout</a>
+                        </li>
                         <li class="nav-link text-white ml-5">
                             <a href="custProf" class="text-white">Welcome Admin</a>
                         </li>

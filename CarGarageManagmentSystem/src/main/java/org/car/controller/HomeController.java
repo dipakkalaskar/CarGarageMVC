@@ -1,4 +1,5 @@
 package org.car.controller;
+
 import org.car.service.*;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -41,10 +42,11 @@ public class HomeController {
 	public String homePage() {
 		return "indexcust";
 	}
+
 	@RequestMapping("/afterLogin")
 	public String afterLoginIndex() {
 		return "afterindexcust";
-		
+
 	}
 
 	@RequestMapping("/login")
@@ -100,71 +102,70 @@ public class HomeController {
 		map.put("sdetails", lst);
 		return "vsdetails";
 	}
+
 	@RequestMapping("/getNotification")
 	public String getNotifications(Map map, HttpSession session) {
-		String stat="pending";
+		String stat = "pending";
 		List lst = custService.getAllServicingDetailss(stat);
 		System.out.println(lst);
 		map.put("sdetails", lst);
 		return "notification";
 	}
+
 	@RequestMapping("updateservicing")
-	public String updateServiceStatus(@RequestParam("cid") int id,Map map) {
-		int val=servicingService.isUpdateServicingStatus(id);
-		if(val>0) {
-			map.put("msg","Servicing Done and Bill Generated");
-			
-		}
-		else{
+	public String updateServiceStatus(@RequestParam("cid") int id, Map map) {
+		int val = servicingService.isUpdateServicingStatus(id);
+		if (val > 0) {
+			map.put("msg", "Servicing Done and Bill Generated");
+
+		} else {
 			map.put("msg", "Servicing Canceled");
-			
+
 		}
 		return "notification";
-		
+
 	}
+
 	@RequestMapping("getServicingStatus")
-	public String getServicingDetails(HttpSession session,Map map) {
-		int vid=(int) session.getAttribute("vehicle_id");
+	public String getServicingDetails(HttpSession session, Map map) {
+		int vid = (int) session.getAttribute("vehicle_id");
 		System.out.println(vid);
-		String status= servicingService.getServicingStatus(vid);
+		String status = servicingService.getServicingStatus(vid);
 		System.out.println(status);
-		if(status.equals("done")) {
+		if (status.equals("done")) {
 			map.put("msg", "Your Servicing is Done !! and Bill is Generated you can View your Bill!!");
-			
-			List<ServicingToBillModel> list=servicingService.getServicingToBillModel(vid);
+
+			List<ServicingToBillModel> list = servicingService.getServicingToBillModel(vid);
 			System.out.println(list);
 			double discount;
 			double finalAmount;
 			int totalVisits;
-			GenBillModel bill =new GenBillModel();
-			 for (ServicingToBillModel model : list) {
-				 	bill.setServicingID(model.getServicingID());
-				 	bill.setBillDate(model.getServiceDate());
-				 	totalVisits=model.getTotalVisits();
-				 	if(totalVisits==1) {
-				 		discount=model.getTotalPrice()*0.1;
-				 	}
-				 	else if(totalVisits >= 5) {
-				 		discount=model.getTotalPrice()*0.15;
-				 	}
-				 	else {
-				 		discount=0.0;
-				 	}
-				 	bill.setTotalAmount(model.getTotalPrice());
-				 	bill.setDiscountApplied(discount);
-				 	finalAmount=model.getTotalPrice()-discount;
-				 	bill.setFinalAmount(finalAmount);
-		        }
-			int val= servicingService.isGenBill(bill);
-		}
-		else if(status.equals("pending")) {
+			GenBillModel bill = new GenBillModel();
+			for (ServicingToBillModel model : list) {
+				bill.setServicingID(model.getServicingID());
+				bill.setBillDate(model.getServiceDate());
+				totalVisits = model.getTotalVisits();
+				if (totalVisits == 1) {
+					discount = model.getTotalPrice() * 0.1;
+				} else if (totalVisits >= 5) {
+					discount = model.getTotalPrice() * 0.15;
+				} else {
+					discount = 0.0;
+				}
+				bill.setTotalAmount(model.getTotalPrice());
+				bill.setDiscountApplied(discount);
+				finalAmount = model.getTotalPrice() - discount;
+				bill.setFinalAmount(finalAmount);
+			}
+			int val = servicingService.isGenBill(bill);
+		} else if (status.equals("pending")) {
 			map.put("msg", "Your Servicing is in Process we will inform you When its Done!!");
-		}
-		else {
-			map.put("msg","There are some Problem With your Acount Please wait we will Get In Touch with You");
+		} else {
+			map.put("msg", "There are some Problem With your Acount Please wait we will Get In Touch with You");
 		}
 		return "servicingStatus";
 	}
+
 	@RequestMapping("getBill")
 	public String getBill(HttpSession session, Map map) {
 		user_id = (int) session.getAttribute("user_id");
@@ -188,8 +189,7 @@ public class HomeController {
 //}
 	@Autowired
 	VehicleService vservice;
-	
-	
+
 	@Autowired
 	ServiceService serviceservice;
 
@@ -240,6 +240,7 @@ public class HomeController {
 		// return "superadmindashjsp";
 
 	}
+
 	@RequestMapping("addviewcust")
 	public String addviewcust() {
 		return "addviewcust";
@@ -255,13 +256,13 @@ public class HomeController {
 		} else {
 			msg.put("msg", "Customer Not Added...");
 		}
-		
+
 //	return "regcust";
 //		return "superadmindashjsp";
 		return "addviewcust";
 
 	}
-	
+
 //	@RequestMapping("/viewCustomer")
 //	public String viewCustomer(Model model) {
 //	    List<CustomerModel> customers = custService.GetAllCustomers();
@@ -275,7 +276,7 @@ public class HomeController {
 		map.put("custList", list);
 ////		return "superadmindashjsp";
 //		return "addviewcust";
-	return "viewCust";
+		return "viewCust";
 	}
 
 	@RequestMapping("deleteCustById")
@@ -286,96 +287,101 @@ public class HomeController {
 		map.put("custList", list);
 		return "viewCust";
 	}
+
 	@RequestMapping("viewService")
-	public String showAllServices(Map map)
-	{
-		List<ServiceModel> list=serviceservice.getAllServices();
+	public String showAllServices(Map map) {
+		List<ServiceModel> list = serviceservice.getAllServices();
 		System.out.println(list);
 		map.put("serviceList", list);
 		return "showService";
 	}
+
 	@RequestMapping("addService")
 	public String AddService() {
 		return "addService";
 	}
+
 	@RequestMapping("showSubServices")
 	public String showAllSubServices(Map map) {
-		List<SubServiceModel> list=serviceservice.getAllSubServices();
+		List<SubServiceModel> list = serviceservice.getAllSubServices();
 		System.out.println(list);
 		map.put("subservice", list);
 		return "showsub";
 	}
+
 	@RequestMapping("showacc")
 	public String showAcc(Map map) {
-		List<AccessoriesModel> list=serviceservice.getAllAccessories();
+		List<AccessoriesModel> list = serviceservice.getAllAccessories();
 		System.out.println(list);
 		map.put("showac", list);
 		return "showacc";
 	}
+
 	@RequestMapping("bookService")
 	public String bookService(Map map) {
-		List<ServiceModel> list=serviceservice.getAllServices();
+		List<ServiceModel> list = serviceservice.getAllServices();
 		System.out.println(list);
 		map.put("serviceList", list);
-		List<SubServiceModel> list1=serviceservice.getAllSubServices();
+		List<SubServiceModel> list1 = serviceservice.getAllSubServices();
 		System.out.println(list1);
 		map.put("subservice", list1);
-		List<AccessoriesModel> list2=serviceservice.getAllAccessories();
+		List<AccessoriesModel> list2 = serviceservice.getAllAccessories();
 		System.out.println(list2);
 		map.put("showac", list2);
 		return "servicing";
 	}
+
 	@Autowired
 	ServicingService servicingService;
+
 	@RequestMapping("submitServiceDetails")
-	public String submitServiceDetails( ServicingModel servicingModel,HttpSession session) {
-		int vehicleid=(int) session.getAttribute("vehicle_id");
+	public String submitServiceDetails(ServicingModel servicingModel, HttpSession session) {
+		int vehicleid = (int) session.getAttribute("vehicle_id");
 		servicingModel.setVehicleID(vehicleid);
 		servicingModel.setServiceDate(new Date(System.currentTimeMillis()));
 		servicingService.saveServicingDetails(servicingModel);
-        // Calculate total price if needed (depends on business logic)
-	 System.out.println(servicingModel);
+		// Calculate total price if needed (depends on business logic)
+		System.out.println(servicingModel);
 //        servicingService.saveServicingDetails(servicingModel);
-        return "suc";
-    }
+		return "suc";
+	}
+
 	@RequestMapping("generateBill")
-	public String generateBill(HttpSession session,Map msg) {
-		int vehicleid=(int) session.getAttribute("vehicle_id");
-		List<ServicingToBillModel> list=servicingService.getServicingToBillModel(vehicleid);
+	public String generateBill(HttpSession session, Map msg) {
+		int vehicleid = (int) session.getAttribute("vehicle_id");
+		List<ServicingToBillModel> list = servicingService.getServicingToBillModel(vehicleid);
 		System.out.println(list);
 		double discount;
 		double finalAmount;
 		int totalVisits;
-		GenBillModel bill =new GenBillModel();
-		 for (ServicingToBillModel model : list) {
-			 	bill.setServicingID(model.getServicingID());
-			 	bill.setBillDate(model.getServiceDate());
-			 	totalVisits=model.getTotalVisits();
-			 	if(totalVisits==1) {
-			 		discount=model.getTotalPrice()*0.1;
-			 	}
-			 	else if(totalVisits >= 5) {
-			 		discount=model.getTotalPrice()*0.15;
-			 	}
-			 	else {
-			 		discount=0.0;
-			 	}
-			 	bill.setTotalAmount(model.getTotalPrice());
-			 	bill.setDiscountApplied(discount);
-			 	finalAmount=model.getTotalPrice()-discount;
-			 	bill.setFinalAmount(finalAmount);
-	        }
-		int val= servicingService.isGenBill(bill);
-		if(val>0) {
-			msg.put("msg","Bill Generated");
+		GenBillModel bill = new GenBillModel();
+		for (ServicingToBillModel model : list) {
+			bill.setServicingID(model.getServicingID());
+			bill.setBillDate(model.getServiceDate());
+			totalVisits = model.getTotalVisits();
+			if (totalVisits == 1) {
+				discount = model.getTotalPrice() * 0.1;
+			} else if (totalVisits >= 5) {
+				discount = model.getTotalPrice() * 0.15;
+			} else {
+				discount = 0.0;
+			}
+			bill.setTotalAmount(model.getTotalPrice());
+			bill.setDiscountApplied(discount);
+			finalAmount = model.getTotalPrice() - discount;
+			bill.setFinalAmount(finalAmount);
 		}
-		else {
-			msg.put("msg","Bill Not GEnerated");
+		int val = servicingService.isGenBill(bill);
+		if (val > 0) {
+			msg.put("msg", "Bill Generated");
+		} else {
+			msg.put("msg", "Bill Not GEnerated");
 		}
 //		System.out.println(list.get(vehicleid));
 		return "custprof";
-		
+
 	}
+
 //	 @PostMapping("/submitServiceDetails")
 //	    public ModelAndView submitServiceDetails(@ModelAttribute("serviceDetailsForm") ServicingModel servicingModel) {
 //	        // Calculate total price if needed (depends on business logic)
@@ -384,17 +390,17 @@ public class HomeController {
 //	        return new ModelAndView("redirect:/success");
 //	    }
 	@RequestMapping("saveService")
-	public String saveService(ServiceModel model,Map msg) {
-		int val=serviceservice.isAddService(model);
-		if(val>0) {
+	public String saveService(ServiceModel model, Map msg) {
+		int val = serviceservice.isAddService(model);
+		if (val > 0) {
 			msg.put("msg", "Service Added");
-		}
-		else {
-			msg.put("msg","Service Not Added");
+		} else {
+			msg.put("msg", "Service Not Added");
 		}
 		return "addService";
-		
+
 	}
+
 	@RequestMapping("adminhead")
 	public String adminHead() {
 		return "adminhead";
@@ -405,44 +411,57 @@ public class HomeController {
 
 		return "custprof";
 	}
+
 	@Autowired
 	VehicleReportService vehicleReportService;
+
 	@RequestMapping("vehiclemonth")
 	public String getVehiclemonth() {
 		return "vehiclemonth";
 	}
-	 @RequestMapping("/vehicleReport")
-	    public String getMonthlyVehicleReport(@RequestParam("month") int month,
-	                                          @RequestParam("year") int year, Model model) {
-	        List<VehicleReportModel> reportList = vehicleReportService.getMonthlyVehicleReport(month, year);
-	        model.addAttribute("reportList", reportList);
-	        return "vehicleReport";
-	    }
-	 @RequestMapping("incomemonth")
-	 public String getIncomeMonth() {
-		 return "incomemonth";
-	 }
-	 @RequestMapping("/monthlyIncome")
-	    public String viewMonthlyIncome(@RequestParam("month") int month, @RequestParam("year") int year, Model model) {
-	        MonthlyIncomeModel income = vehicleReportService.getMonthlyIncome(month, year);
-	        model.addAttribute("income", income);
-	        model.addAttribute("month", month);
-	        model.addAttribute("year", year);
-	        return "monthlyIncome";
-	    }
-	 @RequestMapping("getCustId")
-	 public String getCustId() {
-		 return "getCustId";
-	 }
-	 @RequestMapping("customerVehicleReport")
-	 public String getCustomerVehicleReport(@RequestParam("customerName") String customerName, Model model) {
-	        List<CustomerVehicleReportModel> reportList = vehicleReportService.getCustomerVehicleReport(customerName);
-	        model.addAttribute("reportList", reportList);
-	        return "customerVehicleReport";
-	    }
-	 @RequestMapping("logout")
-	 public String logout(HttpSession session) {
-		 session.invalidate();
-		 return "indexcust";
-	 }
+
+	@RequestMapping("/vehicleReport")
+	public String getMonthlyVehicleReport(@RequestParam("month") int month, @RequestParam("year") int year,
+			Model model) {
+		List<VehicleReportModel> reportList = vehicleReportService.getMonthlyVehicleReport(month, year);
+		model.addAttribute("reportList", reportList);
+		return "vehicleReport";
+	}
+
+	@RequestMapping("incomemonth")
+	public String getIncomeMonth() {
+		return "incomemonth";
+	}
+
+	@RequestMapping("/monthlyIncome")
+	public String viewMonthlyIncome(@RequestParam("month") int month, @RequestParam("year") int year, Model model) {
+		MonthlyIncomeModel income = vehicleReportService.getMonthlyIncome(month, year);
+		model.addAttribute("income", income);
+		model.addAttribute("month", month);
+		model.addAttribute("year", year);
+		return "monthlyIncome";
+	}
+
+	@RequestMapping("getCustId")
+	public String getCustId() {
+		return "getCustId";
+	}
+
+	@RequestMapping("customerVehicleReport")
+	public String getCustomerVehicleReport(@RequestParam("customerName") String customerName, Model model) {
+		List<CustomerVehicleReportModel> reportList = vehicleReportService.getCustomerVehicleReport(customerName);
+		model.addAttribute("reportList", reportList);
+		return "customerVehicleReport";
+	}
+
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "indexcust";
+	}
+	@RequestMapping("addSubService")
+	public String addSubService(@ModelAttribute("subServiceModel") SubServiceModel subServiceModel) {
+		serviceservice.saveSubService(subServiceModel);
+		return "addsubservice";
+	}
 }
